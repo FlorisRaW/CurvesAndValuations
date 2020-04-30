@@ -42,6 +42,10 @@ namespace CurveCalculations.Parsers
                 {
                     throw new InvalidCastException($"Cannot parse {relevantCurveInfo.CompoundingType} to the CompoundingType Enum!");
                 }
+                if (!Enum.IsDefined(typeof(CompoundingType),relevantCurveInfo.CompoundingFrequency))
+                {
+                    throw new InvalidCastException($"Cannot parse {relevantCurveInfo.CompoundingFrequency} to the CompoundingType Enum!");
+                }
                 var compFreq = (MaturityType)relevantCurveInfo.CompoundingFrequency;
 
                 var parsedCurve = new Curve(curveType, compType, compFreq, MaturityType.Custom, termsAndRates.Keys.ToArray(), termsAndRates.Values.ToArray());
